@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="guiBuilder" default="buildWindowsExes">
+	
+	<target name="buildjars">
+		<jar basedir="../bin" destfile="dogyears/DogYears.jar" compress="true" manifest="../src/dogyears/MANIFEST">
+			<include name="dogyears/*" />
+		</jar>
+		<jar basedir="../bin" destfile="starfield/StarField.jar" compress="true" manifest="../src/starfield/MANIFEST">
+			<include name="starfield/*" />
+		</jar>
+		
+	</target>
+
+	<taskdef name="jsmoothgen"
+	     classname="net.charabia.jsmoothgen.ant.JSmoothGen"
+	     classpath="jsmooth-0.9.9-7/lib/jsmoothgen-ant.jar"/>
+	
+	<target name="buildWindowsExes" depends="buildjars" description="Builds Windows EXE File">
+		<jsmoothgen project="DogYearsExeConfig.jsmooth" 
+		      skeletonroot="jsmooth-0.9.9-7/skeletons"/>
+		<jsmoothgen project="StarFieldExeConfigUseJar.jsmooth" 
+		      skeletonroot="jsmooth-0.9.9-7/skeletons"/>
+		<jsmoothgen project="StarFieldExeConfigBundled.jsmooth" 
+		      skeletonroot="jsmooth-0.9.9-7/skeletons"/>
+	</target>
+
+
+</project>
