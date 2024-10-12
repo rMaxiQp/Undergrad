@@ -109,3 +109,115 @@ replay_pid*
 
 **/__pycache__/
 **/*.egg-info/
+
+## C++ gitignore
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+## Verilog gitignore
+# Executable
+*.out
+
+# Wave file
+*.vcd
+*.vcd.pdf
+
+# modelsim
+# ignore ModelSim generated files and directories (temp files and so on)
+[_@]*
+
+# ignore compilation output of ModelSim
+*.mti
+*.dat
+*.dbs
+*.psm
+*.bak
+*.cmp
+*.html
+*.bsf
+
+# ignore simulation output of ModelSim
+wlf*
+*.wlf
+*.vstf
+*.ucdb
+transcript*
+sc_dpiheader.h
+vsim.dbg
+
+# FOSS 
+*.asc
+*.bin
+*.blif
+*.swp
+*.json
+host
+*.o
+
+# verilator
+obj_dir
+
+# vivado
+.Xil
+
+# temp
+*.swp
+
+#vcs
+csrc 
+simv* 
+*.key 
+*.vcd
+
+#vcs + verdi
+*.log
+*.daidir
+*.fsdb
+*.vdb
+novas.conf
+novas.rc
+verdiLog
+
+# UVM
+vc_hdrs.h
+
+## Clojure gitignore
+*.jar
+target
+clojure.iws
+clojure.ipr
+nbproject/private/
+maven-classpath
+maven-classpath.properties
+.idea/
+*.iml
