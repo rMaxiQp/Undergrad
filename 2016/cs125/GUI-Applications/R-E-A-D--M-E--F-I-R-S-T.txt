@@ -1,0 +1,69 @@
+This ungraded project demonstrates how to create simple GUI applications.
+
+It also uses two tools:
+
+Ant - an automated build system
+JSmooth - builds 'exe' files to run your program.
+
+Ant runs small tasks inside a 'build.xml' file.
+The build file in this project creates a jar file
+(a zip of all the required files) 
+and then calls JSmooth to build the windows executable file:
+
+<jar basedir="../bin" destfile="dogyears/DogYears.jar" compress="true" manifest="../src/dogyears/MANIFEST">
+	<include name="dogyears/*" />
+</jar>
+<jsmoothgen project="DogYearsExeConfig.jsmooth"  skeletonroot="jsmooth-0.9.9-7/skeletons"/>
+
+The jar file itself is executable:
+java -jar DogYears.jar
+... but Window's users want a simple .exe file. Enter JSmooth.
+JSmooth is controlled by a simple configuration file.
+You don't need to edit the configuration file directly
+instead JSmooth includes a GUI configuration editor to set the correct options.
+(JSmooth can bundle the jar into the exe - which is useful for small projects)
+
+To build the jar and the exe files,
+(0)
+If jsmooth crashes with an exception, it's probably because it couldn't load the icon.
+So check the path points to an actual graphics file in jsmooth's configuration file.
+And...
+
+(1)
+If building on linux or mac, you'll need to replace the .jsmooth files with
+the files inside 'replaceConfigsWithThesesWhenBuildingOnAMacOrLinux'
+-These versions change the following options
+
+<executableName>dogyears\DogYearsBundled.exe</executableName>
+<iconLocation>..\src\dogyears\dog.jpg</iconLocation>
+<jarLocation>dogyears\DogYears.jar</jarLocation>
+
+to use forward slashes - 
+
+<executableName>dogyears/DogYearsBundled.exe</executableName>
+<iconLocation>../src/dogyears/dog.jpg</iconLocation>
+<jarLocation>dogyears/DogYears.jar</jarLocation>
+
+
+(2)
+right click on the 'build.xml' in the build/ subdirectory
+and select 
+Run AS> Ant Build
+
+For really large projects, don't bundle the whole application into a single .exe file.
+Instead you'll need a third tool to create an installer.
+An installer can also create Desktop shortcuts and associate your program
+with specific kinds of files. (Consider nullsoft's installer and izpack )
+
+Have fun building GUI apps!
+
+-Bill
+
+
+
+
+
+
+
+
+
