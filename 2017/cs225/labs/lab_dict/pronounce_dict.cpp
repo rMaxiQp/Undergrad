@@ -15,32 +15,35 @@
 #include <cstring>
 #include <algorithm>
 
-using std::string;
-using std::map;
-using std::vector;
 using std::ifstream;
 using std::istream;
 using std::istream_iterator;
+using std::map;
+using std::string;
 using std::stringstream;
+using std::vector;
 
 /**
  * Constructs a PronounceDict from a CMU pronunciation dictionary
- * file. See http://www.speech.cs.cmu.edu/cgi-bin/cmudict .
+ * file. See http://www.speech.cs.cmu.edu/cgi-bin/cmudict.txt .
  * @param pronun_dict_filename Filename of the CMU pronunciation
  * dictionary.
  */
-PronounceDict::PronounceDict(const string& pronun_dict_filename)
+PronounceDict::PronounceDict(const string &pronun_dict_filename)
 {
     ifstream pronun_dict_file(pronun_dict_filename);
     string line;
-    if (pronun_dict_file.is_open()) {
-        while (getline(pronun_dict_file, line)) {
+    if (pronun_dict_file.is_open())
+    {
+        while (getline(pronun_dict_file, line))
+        {
             /* Used to break the line by whitespace. The CMU Dict does this for
              * separating words from their pronunciations. */
             stringstream line_ss(line);
             istream_iterator<string> line_begin(line_ss);
             istream_iterator<string> line_end;
-            if (line[0] != '#' && *line_begin != ";;;") {
+            if (line[0] != '#' && *line_begin != ";;;")
+            {
                 /* Associate the word with the rest of the line
                  * (its pronunciation). */
                 istream_iterator<string> temp_itr = line_begin;
@@ -58,7 +61,7 @@ PronounceDict::PronounceDict(const string& pronun_dict_filename)
  * @param pronun_dict Maps a string word to a vector of strings
  * representing its pronunciation.
  */
-PronounceDict::PronounceDict(const map<string, vector<string>>& pronun_dict)
+PronounceDict::PronounceDict(const map<string, vector<string>> &pronun_dict)
     : dict(pronun_dict)
 {
     /* Nothing to see here. */
@@ -72,16 +75,17 @@ PronounceDict::PronounceDict(const map<string, vector<string>>& pronun_dict)
  * one or both words weren't in the dictionary).
  * Note: The word keys in the dictionary are stored in uppercase.
  */
-bool PronounceDict::homophones(const string& word1, const string& word2) const
+bool PronounceDict::homophones(const string &word1, const string &word2) const
 {
-  string upper1 = word1;
-  string upper2 = word2;
-  std::transform(upper1.begin(), upper1.end(), upper1.begin(), ::toupper);
-  std::transform(upper2.begin(), upper2.end(), upper2.begin(), ::toupper);
+    string upper1 = word1;
+    string upper2 = word2;
+    std::transform(upper1.begin(), upper1.end(), upper1.begin(), ::toupper);
+    std::transform(upper2.begin(), upper2.end(), upper2.begin(), ::toupper);
 
-  auto u1 = dict.find(upper1);
-  auto u2 = dict.find(upper2);
+    auto u1 = dict.find(upper1);
+    auto u2 = dict.find(upper2);
 
-  if(u1 == dict.end() || u2 == dict.end() || u1->second != u2->second) return false;
-  return true;
+    if (u1 == dict.end() || u2 == dict.end() || u1->second != u2->second)
+        return false;
+    return true;
 }
