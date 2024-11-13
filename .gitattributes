@@ -1,0 +1,2 @@
+# Github doesn't recognize MIPS, use Assembly instead
+*.s linguist-language=Assembly
